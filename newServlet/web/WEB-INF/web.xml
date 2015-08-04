@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+    <servlet>
+        <servlet-name>userListServlet</servlet-name>
+        <servlet-class>ua.anton.servlet.UserListServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>addUserServlet</servlet-name>
+        <servlet-class>ua.anton.servlet.AddUserServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>userDeleteServlet</servlet-name>
+        <servlet-class>ua.anton.servlet.UserDeleteServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>userEditServlet</servlet-name>
+        <servlet-class>ua.anton.servlet.UserEditServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>userListServlet</servlet-name>
+        <url-pattern>/user/list</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>addUserServlet</servlet-name>
+        <url-pattern>/user/add</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>userDeleteServlet</servlet-name>
+        <url-pattern>/user/delete</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>userEditServlet</servlet-name>
+        <url-pattern>/user/edit</url-pattern>
+    </servlet-mapping>
+
+</web-app>
