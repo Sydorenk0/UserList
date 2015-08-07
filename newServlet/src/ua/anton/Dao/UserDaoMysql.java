@@ -14,6 +14,7 @@ import java.util.List;
 public class UserDaoMysql extends BaseDao implements UserDao {
 
 
+
     public User getById(int id) {
         if (id != 0) {
             Connection connection = null;
@@ -38,18 +39,26 @@ public class UserDaoMysql extends BaseDao implements UserDao {
 
             } finally {
                 if (statement != null) {
-                    statement.close();
-                    //  почему подчеркивает
+                    try {
+                        statement.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                    //  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
                 }
                 if (connection != null) {
-                    connection.close();
-                    //  почему подчеркивает
+                    try {
+                        connection.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                    //  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
                 }
             }
             return user;
         }
 //else {
-// дописать вывод сообщения об ошибке
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         // }
         return null;
     }
@@ -70,7 +79,7 @@ public class UserDaoMysql extends BaseDao implements UserDao {
             while (resultSet.next()) {
                 User user = new User();
                 user.setId(resultSet.getInt("id"));
-                user.setLogin(resultSet.getString("username"));
+                user.setLogin(resultSet.getString("login"));
                 user.setFirstName(resultSet.getString("lastName"));
                 user.setEmail(resultSet.getString("Email"));
 
@@ -79,17 +88,25 @@ public class UserDaoMysql extends BaseDao implements UserDao {
             }
 
         } catch (SQLException ex) {
-            //todo
+            ex.printStackTrace();
 
         } finally {
             if (statement != null) {
-                statement.close();
-                //  почему подчеркивает
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                //  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
             }
             if (connection != null) {
-                connection.close();
-                //  почему подчеркивает
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                //  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
             }
         }
@@ -120,10 +137,18 @@ public class UserDaoMysql extends BaseDao implements UserDao {
 
         } finally {
             if (statement != null) {
-                statement.close();
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
             if (connection != null) {
-                connection.close();
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
 
 
@@ -147,12 +172,20 @@ public class UserDaoMysql extends BaseDao implements UserDao {
 
         } finally {
             if (statement != null) {
-                statement.close();
-                //  почему подчеркивает
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                //  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             }
             if (connection != null) {
-                connection.close();
-                //  почему подчеркивает
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                //  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             }
         }
     }

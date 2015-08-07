@@ -12,18 +12,16 @@ public class BaseDao {
     private  final String USERNAME = "root";
     private  final  String PASSWORD = "1234";
 
-    private Connection connection = null;
+static { try {
+    Class.forName("com.mysql.jdbc.Driver");
+} catch (ClassNotFoundException e) {
+    e.printStackTrace();
+}
+}
+    public BaseDao() {}
 
-    public BaseDao(){
-        try {
-            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-    }
-
-    public Connection getConnection() {
-        return connection;
+    public Connection getConnection() throws SQLException {
+        return DriverManager.getConnection("jdbc:mysql://localhost:3306/userlist", "root", "1234");
     }
 }
