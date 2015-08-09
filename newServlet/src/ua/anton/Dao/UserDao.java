@@ -11,9 +11,12 @@ import java.util.List;
 public interface UserDao {
 
     User getById(int id) throws SQLException;
+
     List<User> getAll() throws SQLException;
+
     void saveOrUpdate(User user) throws SQLException;
-    void delete (User id) throws SQLException;
+
+    void delete(User id) throws SQLException;
 
 
 }

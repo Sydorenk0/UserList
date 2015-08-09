@@ -14,54 +14,53 @@ import java.util.List;
 public class UserDaoMysql extends BaseDao implements UserDao {
 
 
-
     public User getById(int id) {
-        if (id != 0) {
-            Connection connection = null;
-            Statement statement = null;
-            User user = new User();
 
-            try {
-                connection = getConnection();
-                statement = connection.createStatement();
+        Connection connection = null;
+        Statement statement = null;
+        User user = new User();
+
+        try {
+            connection = getConnection();
+            statement = connection.createStatement();
+
+            String sql = "SELECT * FROM userlist WHERE id = '" + id + "'";
+            System.out.println("sql = " + sql);
+            ResultSet resultSet = statement.executeQuery(sql);
+
+            resultSet.next();
+            user.setId(resultSet.getInt("id"));
+            user.setLogin(resultSet.getString("login"));
+            user.setFirstName(resultSet.getString("lastName"));
+            user.setEmail(resultSet.getString("Email"));
 
 
-                ResultSet resultSet = statement.executeQuery("SELECT * FROM userlist WHERE id = id");
+        } catch (SQLException ex) {
+            //hkjhkjh
 
-                user.setId(resultSet.getInt("id"));
-                user.setLogin(resultSet.getString("username"));
-                user.setFirstName(resultSet.getString("lastName"));
-                user.setEmail(resultSet.getString("Email"));
-
-
-            } catch (SQLException ex) {
-                //hkjhkjh
-
-            } finally {
-                if (statement != null) {
-                    try {
-                        statement.close();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                    //  ������ ������������
-                }
-                if (connection != null) {
-                    try {
-                        connection.close();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                    //  ������ ������������
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
             }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        if ("".equals(user.getId())) {
+            return null;
+        } else {
             return user;
         }
-//else {
-// �������� ����� ��������� �� ������
-        // }
-        return null;
     }
+
 
     public List<User> getAll() {
         Connection connection = null;
@@ -97,7 +96,6 @@ public class UserDaoMysql extends BaseDao implements UserDao {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-                //  ������ ������������
 
             }
             if (connection != null) {
@@ -106,8 +104,6 @@ public class UserDaoMysql extends BaseDao implements UserDao {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-                //  ������ ������������
-
             }
         }
         return result;
@@ -122,18 +118,22 @@ public class UserDaoMysql extends BaseDao implements UserDao {
             connection = getConnection();
             statement = connection.createStatement();
 
-            if ("".equals(user.getId())) {
-
-                statement.execute("INSERT  INTO userlist (Login, lastName, Email) " +
-                        "VALUE (user.getLogin,  user.getFirstName, user.getEmail);");
+            //if ("".equals(user.getId())) {
+            if (user.getId() != 0) {
+                String sql = "UPDATE  userlist SET  Login = '" + user.getLogin() + "', " +
+                        "lastName = '" + user.getFirstName() + "', Email ='" + user.getEmail() + "' WHERE  id ='" + user.getId() + "'";
+                System.out.println("sql = " + sql);
+                statement.executeUpdate(sql);
             } else {
-                statement.executeUpdate("UPDATE  userlist SET  Login = user.getLogin, " +
-                        "lastName = user.getFirstName, Email =user.getEmail WHERE  id =user.getId()");
+
+                String sql = "INSERT  INTO  userlist (Login, lastName, Email) VALUE ('" + user.getLogin() + "', '" + user.getFirstName() + "', '" + user.getEmail() + "')";
+                System.out.println("sql = " + sql);
+                statement.execute(sql);
             }
 
 
         } catch (SQLException ex) {
-            //todo
+            ex.printStackTrace();
 
         } finally {
             if (statement != null) {
@@ -150,11 +150,9 @@ public class UserDaoMysql extends BaseDao implements UserDao {
                     e.printStackTrace();
                 }
             }
-
-
         }
-
     }
+
 
     public void delete(User id) {
         Connection connection = null;
@@ -164,7 +162,7 @@ public class UserDaoMysql extends BaseDao implements UserDao {
             connection = getConnection();
             statement = connection.createStatement();
 
-            statement.execute("DELETE FROM userlist WHERE  id = id");
+            statement.execute("DELETE FROM userlist WHERE  id = '" + id.getId() + "'");
 
 
         } catch (SQLException ex) {
@@ -177,7 +175,6 @@ public class UserDaoMysql extends BaseDao implements UserDao {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-                //  ������ ������������
             }
             if (connection != null) {
                 try {
@@ -185,7 +182,6 @@ public class UserDaoMysql extends BaseDao implements UserDao {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-                //  ������ ������������
             }
         }
     }

@@ -24,8 +24,8 @@ public class User extends UserDatabase {
     }
 
     public void setId(int id) {
-               this.id = id;
-        }
+        this.id = id;
+    }
 
 
     public String getLogin() {
@@ -37,40 +37,40 @@ public class User extends UserDatabase {
     }
 
     public String getFirstName() {
-       return firstName;
+        return firstName;
     }
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-   public String getEmail() {
-      return email;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEmail (String email) {
-       this.email = email;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     //public String getLastName() {
-   //     return lastName;
+    //     return lastName;
     //}
 
     //public void setLastName(String lastName) {
-       // this.lastName = lastName;
+    // this.lastName = lastName;
     //}
 
     //public String getMiddleName() {
-      //  return middleName;
-   // }
+    //  return middleName;
+    // }
 
-   // public void setMiddleName(String middleName) {
-     //   this.middleName = middleName;
-   // }
+    // public void setMiddleName(String middleName) {
+    //   this.middleName = middleName;
+    // }
 
     //public Integer getAge() {
-   //    return age;
-   // }
+    //    return age;
+    // }
 
     //public void setAge(Integer age) {
     //   this.age = age;
